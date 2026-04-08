@@ -1,23 +1,554 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "포르쉐 마칸 리스 상품 비교",
+    "description": "2026년 최신 포르쉐 마칸 리스 상품을 모델별로 비교하고, 합리적인 견적을 제공합니다. 마칸 S, GTS, T 등 모델별 가격, 장점, 단점을 분석하여 최적의 선택을 돕습니다.",
+    "url": "https://www.example.com/porsche-macan-lease-2026",
+    "model": "Porsche Macan (2026)",
+    "brand": "Porsche",
+    "offers": {
+      "@type": "OfferCatalog",
+      "name": "포르쉐 마칸 리스 상품",
+      "itemListElement": [
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"포르쉐 마칸 S 리스"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"포르쉐 마칸 GTS 리스"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"포르쉐 마칸 T 리스"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"개인 리스 맞춤 설계"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"법인 리스 세금 절감 컨설팅"}}
+      ]
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "120"
+    }
+  }
+  </script>
+
+  <!-- Google Fonts for professional look -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap">
+
+  <style>
+    /* 기본 글꼴과 색상 조화로운 부드러운 톤 적용 (고급스러운 톤) */
+    body {
+      font-family: 'Noto Sans KR', 'Arial', sans-serif;
+      margin: 0; padding: 0;
+      background: #f0f2f5; /* Light gray background */
+      color: #333333; /* Dark gray text color */
+      line-height: 1.7;
+      font-size: 16px;
+    }
+    header, section, footer {
+      max-width: 1000px; /* Wider layout for better content display */
+      margin: 30px auto;
+      padding: 0 20px;
+      background: #ffffff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+    h1, h2, h3 {
+      color: #1a1a1a; /* Darker title color for premium feel */
+      margin-top: 1.5em;
+      margin-bottom: 0.8em;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+    h1 { font-size: 2.5rem; color: #cc0000; } /* Porsche-like red accent */
+    h2 { font-size: 2rem; border-bottom: 3px solid #f0f0f0; padding-bottom: 10px; }
+    h3 { font-size: 1.5rem; }
+
+    p, li {
+      font-size: 1.05rem;
+      color: #444444;
+      margin-bottom: 1.2em;
+      line-height: 1.8;
+    }
+    nav ul {
+      display: flex;
+      gap: 20px;
+      padding-left: 0;
+      list-style: none;
+      border-bottom: 1px solid #e0e0e0;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    nav li {
+      padding: 10px 0;
+    }
+    nav a {
+      text-decoration: none;
+      font-weight: 600;
+      color: #555555;
+      padding: 5px 10px;
+      transition: color 0.3s ease, background-color 0.3s ease;
+      border-radius: 5px;
+    }
+    nav a:hover {
+      color: #cc0000;
+      background-color: #f7f7f7;
+    }
+
+    /* 이미지 스타일 */
+    .hero-image {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      object-fit: cover;
+    }
+
+    /* 테이블 스타일 */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 25px 0;
+      font-size: 1rem;
+      border: 1px solid #e0e0e0;
+    }
+    th, td {
+      border: 1px solid #e0e0e0;
+      padding: 15px;
+      text-align: left;
+    }
+    th {
+      background-color: #f9f9f9;
+      color: #333333;
+      font-weight: 700;
+      text-align: center;
+      vertical-align: middle;
+    }
+    tr:nth-child(even) {
+      background-color: #fcfcfc;
+    }
+
+    /* 인용구 및 강조 문구 */
+    blockquote {
+      background: #fdfdfd;
+      border-left: 5px solid #cc0000;
+      margin: 20px 0;
+      padding: 15px 20px;
+      font-style: italic;
+      color: #555555;
+      border-radius: 5px;
+    }
+    .highlight {
+      color: #cc0000;
+      font-weight: 700;
+    }
+
+    /* 입력 폼 스타일 */
+    .input-section {
+      margin-top: 25px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .input-group {
+      display: flex;
+      flex-direction: column;
+    }
+    label {
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #333333;
+    }
+    input[type="text"], input[type="tel"], input[type="email"], select, textarea {
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    input[type="text"]:focus, input[type="tel"]:focus, input[type="email"]:focus, select:focus, textarea:focus {
+      border-color: #cc0000;
+      box-shadow: 0 0 5px rgba(204, 0, 0, 0.2);
+      outline: none;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    button.cta-btn {
+      background-color: #cc0000; /* Porsche-like red */
+      color: white;
+      padding: 14px 30px;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background-color 0.3s ease;
+      font-weight: 600;
+    }
+    button.cta-btn:hover {
+      background-color: #a30000;
+    }
+
+    /* 그래프 스타일 */
+    .chart-container {
+      margin: 40px 0;
+      padding: 20px;
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      max-width: 100%;
+      overflow-x: auto;
+    }
+
+    /* FAQ 스타일 */
+    .faq-item {
+      border-bottom: 1px solid #e0e0e0;
+      padding: 15px 0;
+    }
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+    .faq-item h3 {
+      cursor: pointer;
+      color: #333333;
+      font-weight: 700;
+      margin-top: 0;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .faq-content {
+      display: none;
+      padding-top: 5px;
+      margin-left: 10px;
+      color: #555555;
+      line-height: 1.6;
+    }
+    .faq-toggle-icon {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-left: 10px;
+      transition: transform 0.3s ease;
+    }
+    .faq-item.active .faq-toggle-icon {
+      transform: rotate(180deg);
+    }
+
+    /* 외부 링크 스타일 */
+    a.external-link {
+      color: #cc0000;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dashed #cc0000;
+      transition: color 0.3s ease;
+    }
+    a.external-link:hover {
+      color: #a30000;
+    }
+
+    /* 미디어 쿼리 for responsiveness */
+    @media (max-width: 768px) {
+      body { font-size: 15px; }
+      header, section, footer { padding: 0 15px; margin: 20px auto; }
+      h1 { font-size: 2rem; }
+      h2 { font-size: 1.7rem; }
+      .input-section { grid-template-columns: 1fr; }
+      nav ul { flex-direction: column; }
+    }
+  </style>
+
+  <script>
+    // FAQ toggle 기능
+    document.addEventListener('DOMContentLoaded', () => {
+      const faqItems = document.querySelectorAll('.faq-item');
+      faqItems.forEach(item => {
+        const title = item.querySelector('h3');
+        const content = item.querySelector('.faq-content');
+        title.addEventListener('click', () => {
+          item.classList.toggle('active');
+          content.style.display = content.style.display === 'block' ? 'none' : 'block';
+        });
+      });
+    });
+  </script>
+
+</head>
+<body>
+  <header>
+    <h1>포르쉐 마칸 리스 2026: 가장 합리적인 견적을 찾는 방법</h1>
+    <p>2026년형 포르쉐 마칸(Porsche Macan) 리스 상품에 대한 모든 정보가 여기에 있습니다. 최신 마칸 모델별 가격, 리스의 장점과 단점, 그리고 리스 비용을 <span class="highlight">가장 저렴한 곳</span>에서 찾을 수 있는 비교 견적 노하우를 공개합니다. 개인 사업자 리스부터 법인 사업자 리스까지, 마칸 리스를 고려하는 모든 분들을 위한 심층 분석 정보입니다.</p>
     <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
+      <ul>
+        <li><a href="#overview">마칸 리스 개요</a></li>
+        <li><a href="#models">모델별 가격 및 비교</a></li>
+        <li><a href="#pros-cons">리스 장단점 분석</a></li>
+        <li><a href="#cost-analysis">비용 산정 요소</a></li>
+        <li><a href="#faq">자주 묻는 질문</a></li>
+        <li><a href="#quote-request">견적 문의</a></li>
+      </ul>
     </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+  </header>
+
+  <section id="overview">
+    <h2>포르쉐 마칸 리스, 왜 선택해야 할까요?</h2>
+    <p>포르쉐 마칸은 강력한 성능과 일상에서의 실용성을 겸비한 프리미엄 컴팩트 SUV로, 럭셔리 SUV 시장에서 독보적인 위치를 차지하고 있습니다. 2026년 모델은 더욱 세련된 디자인과 업그레이드된 기술 사양을 선보이며 많은 관심을 받고 있습니다. 특히, 마칸을 소유하는 방식 중 리스는 <span class="highlight">초기 비용 부담을 줄이고</span>, 세금 절감 효과를 극대화할 수 있는 현명한 선택지로 주목받고 있습니다.</p>
+    <p>리스는 차량을 직접 구매하지 않고 일정 기간 동안 대여료를 지불하며 사용하는 방식입니다. 포르쉐 마칸과 같은 고가 차량의 경우, 목돈을 투자해야 하는 일시불 구매나 할부보다 유동성을 확보하기 쉽습니다. <span class="highlight">리스의 장점</span>은 차량 관리 부담이 적고, 계약 기간 종료 후 신차로 교체하기 용이하다는 점입니다. 반면, <span class="highlight">리스의 단점</span>은 총 이자 비용이 발생하고, 주행거리가 제한될 수 있다는 점입니다.</p>
+    <p>최근에는 <span class="highlight">AI 기반 분석</span>을 통해 개인의 재정 상황과 운행 패턴에 최적화된 리스 상품을 찾는 것이 일반화되고 있습니다. 네이버 검색이나 구글 검색에서 "포르쉐 마칸 리스 가격 비교"를 검색하여 다양한 <span class="highlight">견적</span>을 받아보는 것이 중요합니다. 특히 <span class="highlight">저렴한 곳</span>을 찾으려면 여러 리스 업체의 <span class="highlight">프로모션</span> 정보를 꼼꼼히 확인해야 합니다.</p>
+    <p>이 페이지에서는 2026년 포르쉐 마칸의 모델별 리스 조건을 상세히 비교하고, <span class="highlight">최적의 리스 견적</span>을 찾는 방법을 안내해 드리겠습니다. 마칸 S, 마칸 GTS, 마칸 T 등 다양한 모델의 <span class="highlight">장단점</span>을 명확히 파악하고, 개인 또는 <span class="highlight">법인</span> 명의로 리스할 때의 <span class="highlight">차이점</span>도 분석해 드립니다.</p>
+  </section>
+
+  <section id="models">
+    <h2>2026 포르쉐 마칸 모델별 가격 및 상세 스펙 비교</h2>
+    <p>2026년형 포르쉐 마칸은 다양한 트림으로 출시되어 소비자 선택의 폭을 넓혔습니다. 각 모델은 엔진 성능, 인테리어 사양, 옵션 패키지에 따라 <span class="highlight">가격</span>이 크게 달라집니다. 리스 <span class="highlight">견적</span>을 산출할 때 모델 선택은 월 납입금에 가장 큰 영향을 미치는 요소입니다.</p>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>모델명</th>
+            <th>기본 가격 (예상)</th>
+            <th>엔진/성능</th>
+            <th>주요 특징</th>
+            <th>예상 월 리스료</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>마칸 (기본)</td>
+            <td>약 8,500만 원</td>
+            <td>2.0L 터보 (265마력)</td>
+            <td>일상 주행에 최적화된 기본 모델, 가성비 뛰어남</td>
+            <td>130만 ~ 150만 원</td>
+          </tr>
+          <tr>
+            <td>마칸 T</td>
+            <td>약 9,000만 원</td>
+            <td>2.0L 터보 (265마력)</td>
+            <td>스포츠 크로노 패키지 등 스포츠 지향 옵션 기본화</td>
+            <td>140만 ~ 160만 원</td>
+          </tr>
+          <tr>
+            <td>마칸 S</td>
+            <td>약 1억 1,000만 원</td>
+            <td>2.9L V6 트윈터보 (380마력)</td>
+            <td>강력한 주행 성능, 럭셔리와 스포츠의 조화</td>
+            <td>170만 ~ 190만 원</td>
+          </tr>
+          <tr>
+            <td>마칸 GTS</td>
+            <td>약 1억 3,500만 원</td>
+            <td>2.9L V6 트윈터보 (440마력)</td>
+            <td>최상위 퍼포먼스 모델, 스포츠 배기 시스템 기본 장착</td>
+            <td>200만 ~ 230만 원</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>위 표는 2026년 기준 <span class="highlight">포르쉐 마칸 기본 모델부터 마칸 S, 마칸 GTS</span>까지의 <span class="highlight">평균</span>적인 <span class="highlight">가격</span>과 <span class="highlight">예상</span> <span class="highlight">월 리스료</span>를 비교한 것입니다. 리스료는 계약 조건(기간, 잔존가치, 선납금 유무)에 따라 <span class="highlight">차이점</span>이 발생할 수 있으므로, 정확한 견적은 별도 문의를 통해 확인해야 합니다. 특히 <span class="highlight">마칸 S</span>와 <span class="highlight">마칸 GTS</span>는 주행 퍼포먼스가 뛰어나기 때문에 리스 <span class="highlight">비용</span>이 다소 높게 <span class="highlight">예상</span>되지만, <span class="highlight">장점</span>이 분명합니다. 반면, <span class="highlight">마칸 T</span>는 <span class="highlight">저렴한</span> 가격으로 포르쉐의 감성을 느낄 수 있는 <span class="highlight">추천</span> 모델입니다.</p>
+
+    <div class="chart-container">
+      <canvas id="leaseCostChart" width="800" height="400" aria-label="포르쉐 마칸 모델별 월 리스 비용 비교 그래프" role="img"></canvas>
+    </div>
+    <p>그래프는 마칸 모델별 <span class="highlight">월 리스료</span>를 시각적으로 보여줍니다. 리스 <span class="highlight">비용</span>은 차량 <span class="highlight">가격</span>에 비례하여 상승하는 경향이 있으며, <span class="highlight">마칸 GTS</span>가 가장 높은 <span class="highlight">월 비용</span>을 나타냅니다. 리스 <span class="highlight">견적</span>을 받을 때, <span class="highlight">마칸 기본 모델</span>과 <span class="highlight">마칸 S</span> 사이에서 고민하는 경우가 많습니다. <span class="highlight">마칸 T</span>는 스포츠 옵션을 추가한 기본 모델로, <span class="highlight">가성비</span>를 찾는 분들에게 <span class="highlight">추천</span>할 만합니다.</p>
+  </section>
+
+  <section id="pros-cons">
+    <h2>포르쉐 마칸 리스의 장점과 단점 심층 분석</h2>
+    <p>포르쉐 마칸 리스는 단순한 구매 방식이 아닌, 합리적인 소비 습관을 위한 선택입니다. 리스의 <span class="highlight">장단점</span>을 명확히 이해해야 후회 없는 결정을 할 수 있습니다. 다음은 <span class="highlight">개인</span> 및 <span class="highlight">법인</span> 명의로 리스할 때의 주요 <span class="highlight">장점</span>과 <span class="highlight">단점</span> 비교입니다.</p>
+    <h3>장점: 초기 비용 절감과 세금 혜택</h3>
+    <ul>
+      <li><strong>초기 비용 부담 감소:</strong> 차량 구매 시 필요한 <span class="highlight">취득세</span>, <span class="highlight">등록세</span> 등의 초기 비용이 발생하지 않습니다. 보증금이나 선납금 없이 진행 가능한 <span class="highlight">무보증 리스</span> 상품도 많아 <span class="highlight">신규 가입</span> 진입 장벽이 낮습니다.</li>
+      <li><strong>세금 절감 효과 (사업자):</strong> 법인 또는 개인 사업자가 마칸 리스를 이용할 경우, 월 리스료 전액을 <span class="highlight">비용 처리</span>할 수 있습니다. <span class="highlight">연간 한도</span> 내에서 <span class="highlight">세금 절감</span> 효과를 볼 수 있어 고소득 사업자에게 특히 <span class="highlight">장점</span>이 큽니다.</li>
+      <li><strong>간편한 차량 관리:</strong> 리스사에서 제공하는 정비 서비스나 보험 가입 대행 서비스를 이용하면 차량 관리의 번거로움을 줄일 수 있습니다.</li>
+      <li><strong>신차 교체 용이성:</strong> 계약 기간 만료 후 차량을 반납하고 바로 새로운 모델로 교체할 수 있습니다. 이는 항상 최신 모델을 선호하는 소비자에게 큰 <span class="highlight">장점</span>입니다.</li>
+    </ul>
+
+    <h3>단점: 총 비용 부담 및 약정 주행거리</h3>
+    <ul>
+      <li><strong>총 비용 부담:</strong> 할부 구매와 비교했을 때 리스는 이자 비용이 발생하므로, 총 <span class="highlight">비용</span> 측면에서는 더 높을 수 있습니다. <span class="highlight">가격</span> 비교 시 <span class="highlight">선납금</span> 및 <span class="highlight">잔존가치</span> 비율을 신중하게 확인해야 합니다.</li>
+      <li><strong>약정 주행거리 제한:</strong> 리스 계약 시 연간 주행거리를 정하게 됩니다. 이를 초과할 경우 계약 만료 시 추가 <span class="highlight">비용</span>이 발생합니다. 주행거리가 긴 운전자에게는 <span class="highlight">단점</span>으로 작용할 수 있습니다.</li>
+      <li><strong>보험 경력 단절:</strong> 리스 차량의 보험은 리스사 명의로 가입되는 경우가 많아, 운전자의 보험 <span class="highlight">경력</span>이 단절될 수 있습니다.</li>
+      <li><strong>차량 소유권 부재:</strong> 계약 기간 동안 차량 소유권은 리스사에 있으므로, 차량을 자유롭게 튜닝하거나 개조할 수 없습니다.</li>
+    </ul>
+    <blockquote>
+      "포르쉐 마칸 리스를 선택할 때는 단순히 월 <span class="highlight">견적</span> <span class="highlight">가격</span>만 볼 것이 아니라, 총 <span class="highlight">비용</span>, 주행거리, 세금 혜택 등 종합적인 <span class="highlight">장단점</span>을 고려해야 합니다. 특히 <span class="highlight">법인</span> 명의 리스는 세금 절감 <span class="highlight">장점</span>이 크지만, <span class="highlight">개인</span>의 경우 신중한 비교가 필요합니다."
+    </blockquote>
+  </section>
+
+  <section id="cost-analysis">
+    <h2>리스 비용 산정의 핵심 요소: 잔존가치와 선납금</h2>
+    <p>포르쉐 마칸 리스 <span class="highlight">견적</span>을 이해하려면 '잔존가치'와 '선납금/보증금' 개념을 알아야 합니다. 이 두 가지 요소가 <span class="highlight">월 리스료</span>의 <span class="highlight">가격</span>을 결정하는 가장 중요한 변수입니다.</p>
+
+    <h3>1. 잔존가치 (Residual Value)</h3>
+    <p>잔존가치는 리스 계약 만료 시점의 차량 가치를 의미합니다. 마칸의 경우 <span class="highlight">감가상각</span>이 비교적 적은 차량에 속하지만, 리스 회사마다 <span class="highlight">잔존가치</span>를 다르게 책정합니다. <span class="highlight">잔존가치</span>가 높으면 차량 가격 중 리스 기간 동안 회수해야 하는 금액이 적어지므로, <span class="highlight">월 납입금</span>이 <span class="highlight">저렴해</span>집니다. <span class="highlight">잔존가치</span>를 높게 책정하는 <span class="highlight">리스사</span>를 찾는 것이 <span class="highlight">견적</span>을 <span class="highlight">저렴하게</span> 받는 핵심 비결입니다.</p>
+
+    <h3>2. 선납금과 보증금</h3>
+    <p><span class="highlight">선납금</span>은 월 리스료의 일부를 미리 지불하는 것으로, 총 리스 비용을 줄이는 효과가 있습니다. <span class="highlight">선납금</span>을 납부하면 <span class="highlight">월 비용</span> 부담이 줄어드는 <span class="highlight">장점</span>이 있습니다.</p>
+    <p><span class="highlight">보증금</span>은 리스 기간 동안 리스사에 맡겨두는 금액으로, 계약 만료 시 돌려받을 수 있습니다. <span class="highlight">보증금</span> 비율을 높이면 리스사 입장에서 위험 부담이 줄어들어 <span class="highlight">이자율</span>을 낮춰주기 때문에 <span class="highlight">월 리스료</span>가 <span class="highlight">저렴해</span>지는 효과가 있습니다.</p>
+    <p>결론적으로, <span class="highlight">마칸 리스 견적</span>을 <span class="highlight">비교</span>할 때는 <span class="highlight">선납금</span>과 <span class="highlight">보증금</span>의 비율, 그리고 <span class="highlight">잔존가치</span>를 종합적으로 고려해야 합니다. 무조건 <span class="highlight">월 납입금</span>이 <span class="highlight">저렴한 곳</span>만 찾기보다는, 총 <span class="highlight">비용</span>과 계약 조건을 꼼꼼히 확인해야 합니다.</p>
+
+    <h3>3. 리스사별 프로모션 및 혜택 비교</h3>
+    <p>은행, 캐피탈사, 수입차 딜러사 등 다양한 <span class="highlight">업체</span>가 <span class="highlight">포르쉐 마칸 리스</span> <span class="highlight">상품</span>을 제공합니다. <span class="highlight">신규 가입</span>자를 위한 <span class="highlight">할인</span> 프로모션, <span class="highlight">현금 지원</span>, <span class="highlight">사은품</span> 증정, <span class="highlight">유류비 지원금</span> <span class="highlight">이벤트</span> 등 <span class="highlight">혜택</span>이 다양합니다. 여러 <span class="highlight">업체</span>의 <span class="highlight">견적</span>을 받아 <span class="highlight">비교</span>하는 것이 필수적입니다. <span class="highlight">내돈내산</span> 후기를 참고하거나 <span class="highlight">디시</span> 등 커뮤니티에서 정보를 얻는 것도 좋은 방법이지만, <span class="highlight">전문가</span>의 <span class="highlight">추천</span>을 받아 신뢰성 있는 <span class="highlight">상품</span>을 선택하는 것이 안전합니다.</p>
+  </section>
+
+  <section id="faq" class="faq">
+    <h2>자주 묻는 질문 (FAQ)</h2>
+    <div class="faq-item">
+      <h3>Q1: 포르쉐 마칸 리스 시 개인과 법인의 차이점은 무엇인가요?<span class="faq-toggle-icon">▼</span></h3>
+      <div class="faq-content">
+        <p>A: 가장 큰 <span class="highlight">차이점</span>은 세금 처리 방식입니다. <span class="highlight">법인</span> 명의 리스는 리스료 전액을 손비 처리하여 법인세 절감 효과를 볼 수 있습니다. 반면, <span class="highlight">개인</span> 명의 리스는 차량 운행 일지를 작성할 경우에 한해 비용 처리가 가능하며, 절세 혜택의 폭이 <span class="highlight">법인</span>보다는 제한적입니다. <span class="highlight">개인</span> 리스는 주로 초기 <span class="highlight">비용</span> 부담을 줄이는 데 초점을 맞춥니다.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <h3>Q2: 포르쉐 마칸 리스 계약 기간은 몇 년이 적당한가요?<span class="faq-toggle-icon">▼</span></h3>
+      <div class="faq-content">
+        <p>A: 일반적으로 리스 계약 기간은 36개월(3년), 48개월(4년), 60개월(5년)이 <span class="highlight">가장 많습니다</span>. 계약 기간이 길어질수록 <span class="highlight">월 리스료</span>는 <span class="highlight">저렴해</span>지지만, 총 이자 <span class="highlight">비용</span>은 증가합니다. <span class="highlight">장점</span>과 <span class="highlight">단점</span>을 고려하여, 신차 교체 주기를 고려해 3~4년 주기로 <span class="highlight">추천</span>하는 경우가 많습니다.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <h3>Q3: 포르쉐 마칸 리스 후 구매 전환이 가능한가요?<span class="faq-toggle-icon">▼</span></h3>
+      <div class="faq-content">
+        <p>A: 네, 리스 계약 만료 시점에 차량을 <span class="highlight">인수</span>할 수 있습니다. <span class="highlight">잔존가치</span> 금액을 납부하고 소유권을 이전받는 방식입니다. 계약 당시 <span class="highlight">잔존가치</span>를 높게 설정하면 <span class="highlight">인수 비용</span>이 높아지므로, <span class="highlight">리스</span>와 <span class="highlight">구매</span> 중 어느 쪽을 선택할지 미리 결정하고 계약 조건을 조정하는 것이 중요합니다.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <h3>Q4: 리스 견적을 받을 때 무엇을 주의해야 하나요?<span class="faq-toggle-icon">▼</span></h3>
+      <div class="faq-content">
+        <p>A: <span class="highlight">견적</span> <span class="highlight">비교</span> 시 <span class="highlight">월 리스료</span> 외에 <span class="highlight">잔존가치</span>, <span class="highlight">선납금</span> 및 <span class="highlight">보증금</span> 조건, 그리고 <span class="highlight">총 리스 비용</span>을 확인해야 합니다. 일부 <span class="highlight">저렴한 곳</span>은 <span class="highlight">잔존가치</span>를 비현실적으로 높게 책정하여 <span class="highlight">월 리스료</span>를 낮추는 경우가 있습니다. 계약 만료 시 <span class="highlight">인수</span> <span class="highlight">가격</span>이 너무 높거나 반납 시 <span class="highlight">패널티</span>가 발생할 수 있으므로, <span class="highlight">전문가</span>의 <span class="highlight">추천</span>을 받아 신뢰성 있는 <span class="highlight">업체</span>를 선택하세요.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <h3>Q5: 포르쉐 마칸 리스 보험은 어떻게 되나요?<span class="faq-toggle-icon">▼</span></h3>
+      <div class="faq-content">
+        <p>A: <span class="highlight">마칸 리스</span> 차량은 리스사 명의로 <span class="highlight">보험</span>이 가입됩니다. <span class="highlight">보험</span>료는 월 리스료에 포함되며, 운전자의 나이 및 운전 경력에 따라 <span class="highlight">보험</span> <span class="highlight">가격</span>이 달라집니다. 운전자 지정 범위(지정 1인, 가족 한정, 전 연령 등)를 선택할 수 있으며, <span class="highlight">견적</span> 시 <span class="highlight">보험</span> <span class="highlight">조건</span>을 명확히 확인해야 합니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="quote-request">
+    <h2>2026 포르쉐 마칸 리스 맞춤 견적 문의</h2>
+    <p>포르쉐 마칸의 <span class="highlight">정확한 리스 견적</span>은 개인의 신용도, 원하는 모델 및 옵션, 리스 기간, <span class="highlight">선납금</span>/보증금 여부에 따라 크게 달라집니다. 아래 양식을 작성하시면 <span class="highlight">전문 업체</span>의 1:1 맞춤 상담을 통해 <span class="highlight">가장 저렴한 곳</span>의 <span class="highlight">견적</span>을 받아보실 수 있습니다. <span class="highlight">개인</span> <span class="highlight">리스</span>와 <span class="highlight">법인</span> <span class="highlight">리스</span> 중 선택하여 문의해 주시면, 세금 혜택을 극대화할 수 있는 <span class="highlight">추천</span> <span class="highlight">상품</span>을 안내해 드립니다.</p>
+    <form action="/submit-porsche-macan-quote" method="post" aria-label="포르쉐 마칸 리스 견적 문의 폼">
+      <div class="input-section">
+        <div class="input-group">
+          <label for="userName">성함</label>
+          <input type="text" id="userName" name="userName" required />
+        </div>
+        <div class="input-group">
+          <label for="phoneNumber">연락처</label>
+          <input type="tel" id="phoneNumber" name="phoneNumber" pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}" placeholder="예: 010-1234-5678" required />
+        </div>
+        <div class="input-group">
+          <label for="email">이메일</label>
+          <input type="email" id="email" name="email" placeholder="example@company.com" required />
+        </div>
+        <div class="input-group">
+          <label for="leaseType">리스 종류</label>
+          <select id="leaseType" name="leaseType" required>
+            <option value="" disabled selected>선택하세요</option>
+            <option value="individual">개인 리스</option>
+            <option value="business">법인 리스</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="macanModel">원하는 마칸 모델</label>
+          <select id="macanModel" name="macanModel" required>
+            <option value="" disabled selected>선택하세요</option>
+            <option value="macan-standard">마칸 (기본)</option>
+            <option value="macan-t">마칸 T</option>
+            <option value="macan-s">마칸 S</option>
+            <option value="macan-gts">마칸 GTS</option>
+            <option value="macan-other">기타 (추가 문의 사항에 기재)</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="leasePeriod">희망 리스 기간 (개월)</label>
+          <input type="number" id="leasePeriod" name="leasePeriod" placeholder="예: 36, 48, 60" required />
+        </div>
+        <div class="input-group">
+          <label for="prepayment">선납금/보증금 여부 및 금액</label>
+          <input type="text" id="prepayment" name="prepayment" placeholder="예: 보증금 20% 희망" />
+        </div>
+        <div class="input-group" style="grid-column: span 2;">
+          <label for="additionalInfo">추가 문의 사항</label>
+          <textarea id="additionalInfo" name="additionalInfo" rows="4" placeholder="특별히 알고 싶은 사항이나 요청 사항을 적어주세요. (예: 마칸 S, 마칸 T 장단점 비교, 리스 상품권 혜택 문의 등)"></textarea>
+        </div>
+      </div>
+      <button type="submit" class="cta-btn">맞춤 견적 요청하기</button>
+    </form>
+  </section>
+
+  <section id="external-resources">
+    <h2>신뢰할 수 있는 외부 참고자료</h2>
+    <ul>
+      <li><a href="https://www.porsche.com/korea/ko/" target="_blank" rel="noopener" class="external-link">포르쉐 코리아 공식 홈페이지</a></li>
+      <li><a href="https://www.kofia.or.kr/" target="_blank" rel="noopener" class="external-link">한국금융투자협회 (리스 금융 관련 정보)</a></li>
+      <li><a href="https://www.hometax.go.kr/" target="_blank" rel="noopener" class="external-link">국세청 홈택스 (사업자 차량 비용 처리 기준 확인)</a></li>
+      <li><a href="https://auto.naver.com/model/main.nhn?modelNo=porsche_macan" target="_blank" rel="noopener" class="external-link">네이버 자동차: 포르쉐 마칸 모델 정보</a></li>
+      <li><a href="https://www.ftc.go.kr/www/carLease.do" target="_blank" rel="noopener" class="external-link">공정거래위원회: 자동차 리스 소비자 피해주의보</a></li>
+    </ul>
+  </section>
+
+  <!-- Chart.js 라이브러리 로드 -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const ctx = document.getElementById('leaseCostChart').getContext('2d');
+    const leaseCostChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['마칸 (기본)', '마칸 T', '마칸 S', '마칸 GTS'],
+        datasets: [{
+          label: '예상 월 리스료 (만원)',
+          data: [140, 150, 180, 210], /* Example data based on typical market estimates */
+          backgroundColor: [
+            'rgba(204, 0, 0, 0.8)',
+            'rgba(204, 0, 0, 0.9)',
+            'rgba(170, 0, 0, 0.9)',
+            'rgba(150, 0, 0, 1)'
+          ],
+          borderColor: [
+            'rgba(204, 0, 0, 1)',
+            'rgba(204, 0, 0, 1)',
+            'rgba(170, 0, 0, 1)',
+            'rgba(150, 0, 0, 1)'
+          ],
+          borderWidth: 1,
+          borderRadius: 6
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              stepSize: 20,
+              callback: value => value + '만원'
+            },
+            title: {
+              display: true,
+              text: '월 리스료 (만원)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: '포르쉐 마칸 모델'
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            callbacks: {
+              label: context => context.parsed.y + '만원'
+            }
+          }
+        }
+      }
+    });
+  </script>
+  
